@@ -13,8 +13,7 @@ class Matricula(Pessoa):
     def __init__(self, nome, cpf, dataNascimento, RA, turma, end, telefone, dataMatricula, status = False):
 
         Pessoa.__init__(self, nome, cpf, dataNascimento)
-    
-        self.RA = RA
+        self.RA = self.gera_RA()
         self.turma = turma
         self.end = end
         self.telefone = telefone
@@ -39,6 +38,8 @@ class Matricula(Pessoa):
             ListaRA.write(str('\n{}' .format(self.RA)))
 
             ListaRA.close()
+
+        return self.RA
         
     def exibe_dados_matricula(self):
 
@@ -62,16 +63,31 @@ class Professor(Pessoa):
     def __init__(self, nome, cpf, dataNascimento, RF, salario, materiaMinistrada, dataContratacao):
 
         Pessoa.__init__(self, nome, cpf, dataNascimento)
-
-        self.RF = RF
-
+        self.RF = self.gera_RF()
         self.salario = salario
-
         self.materiaMinistrada = materiaMinistrada
-
         self.dataContratacao = dataContratacao
 
+    def gera_RF(self):
+        
+        with open("ListaRF.txt", 'r') as ListaRF:
 
+            line = ListaRF.readlines()
+
+            ultimo = len(line)
+            guia_RF = line[ultimo - 1]
+            self.RF = int (guia_RF) + 1
+    
+        
+            ListaRF.close()
+
+        with open("ListaRF.txt", 'a') as ListaRF:
+
+            ListaRF.write(str('\n{}' .format(self.RF)))
+
+            ListaRF.close()
+
+        return self.RF
 
 class Curso:
 
@@ -90,5 +106,7 @@ class Curso:
         self.professores = professores
 
 x = Matricula('Bruno', 44790119866, '18/10/1995', 'C', 'Rua Friedrich', 983673622, '09/09/2018', True)
-x.gera_RA()
 print(x.RA)
+
+y = Professor('Bruno', 123456, 0, '18/11/1056', 1200, 'Nada', '11/05/2018')
+print(y.RF)
