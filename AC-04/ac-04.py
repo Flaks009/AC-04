@@ -66,7 +66,26 @@ class Professor(Pessoa):
 
         self.dataContratacao = dataContratacao
 
+ #continua logo abaixo da class professor
 
+    def gera_RF(self):
+        
+        with open("ListaRF.txt", 'r') as ListaRF:
+
+            line = ListaRF.readlines()
+
+            ultimo = len(line)
+            guia_RF = line[ultimo - 1]
+            guia_RF = int(guia_RF)
+            self.RF = guia_RF + 1
+
+            ListaRF.close()
+
+        with open("ListaRF.txt", 'a') as ListaRF:
+
+            ListaRF.write(str('{}\n' .format(self.RF)))
+
+            ListaRF.close()
 
 class Curso:
 
@@ -84,6 +103,9 @@ class Curso:
 
         self.professores = professores
 
+        
 
 x = Matricula('Bruno', 44790119866, '18/10/1995', 'C', 'Rua Friedrich', 983673622, '09/09/2018', True)
 x.gera_RA()
+y = Professor('Peter', 12345678901, '15/08/1962', 0, 'xxxx,xx', 'Escalada', '11/12/1991')
+y.gera_RF()
