@@ -13,7 +13,8 @@ class Matricula(Pessoa):
     def __init__(self, nome, cpf, dataNascimento, RA, turma, end, telefone, dataMatricula, status = False):
 
         Pessoa.__init__(self, nome, cpf, dataNascimento)
-        self.RA = 0
+    
+        self.RA = RA
         self.turma = turma
         self.end = end
         self.telefone = telefone
@@ -28,16 +29,20 @@ class Matricula(Pessoa):
 
             ultimo = len(line)
             guia_RA = line[ultimo - 1]
-            guia_RA = int(guia_RA)
-            self.RA = guia_RA + 1
-
+            self.RA = int (guia_RA) + 1
+    
+        
             ListaRA.close()
 
         with open("ListaRA.txt", 'a') as ListaRA:
 
-            ListaRA.write(str('{}\n' .format(self.RA)))
+            ListaRA.write(str('\n{}' .format(self.RA)))
 
             ListaRA.close()
+        
+    def exibe_dados_matricula(self):
+
+        print(self.RA, self.nome)
 
 
 class Aluno(Pessoa):
@@ -84,6 +89,6 @@ class Curso:
 
         self.professores = professores
 
-
 x = Matricula('Bruno', 44790119866, '18/10/1995', 'C', 'Rua Friedrich', 983673622, '09/09/2018', True)
 x.gera_RA()
+print(x.RA)
