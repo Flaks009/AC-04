@@ -19,9 +19,19 @@ class professor:
     def listas(self):
         self.listaProfessores = []
         self.listaProfessores.append([self.nome, self.cpf, self.dataNascimento, self.endereco, self.telefone])
-        return self.listaProfessores
+        
+        with open ('professores.txt', 'a+') as Prof:
+            Prof.write("--------------------------------------------\n")
+            Prof.write("Nome do professor: {}\n" .format(self.nome))
+            Prof.write("CPF: {}\n" .format(self.cpf))
+            Prof.write("Data de nascimento: {}\n" .format(self.dataNascimento))
+            Prof.write("Endereço: {}\n" .format(self.endereco))
+            Prof.write("Telefone: {}\n" .format(self.telefone))
+            Prof.write("--------------------------------------------\n")
+
 
     def editar(self):
+         
         continua = True
         doc = input("Digite o CPF para consulta: ")
 
@@ -39,7 +49,18 @@ class professor:
                 continua = False
             else:
                 print("CPF não cadastrado")
-                break
+                return doc
+            
+            with open ('Cadastros_alterados.txt', 'a+') as Prof:
+                Prof.write("--------------------------------------------\n")
+                Prof.write("Nome do professor: {}\n" .format(self.nome))
+                Prof.write("CPF: {}\n" .format(self.cpf))
+                Prof.write("Data de nascimento: {}\n" .format(self.dataNascimento))
+                Prof.write("Endereço: {}\n" .format(self.endereco))
+                Prof.write("Telefone: {}\n" .format(self.telefone))
+                Prof.write("--------------------------------------------\n")
+
+     
                 
 
 
@@ -55,8 +76,6 @@ p.Cadastrar()
 print('\n')
 print('+-------------------+')
 p.listas()
-print(p.listas())
 print('\n')
 print('+-------------------+')
 p.editar()
-print(p.listas())
