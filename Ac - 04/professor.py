@@ -1,11 +1,12 @@
 class professor:
     listaProfessores = []
-    def __init__(self, nome, cpf, dataNascimento, endereco, telefone):
+    def __init__(self, nome, cpf, dataNascimento, endereco, telefone, status = 'Ativo'):
         self.nome = nome
         self. cpf = cpf
         self.dataNascimento = dataNascimento
         self.endereco = endereco
         self. telefone = telefone
+        self.status = 'Ativo'
     
     def Cadastrar (self):
         
@@ -51,7 +52,7 @@ class professor:
                 print("CPF não cadastrado")
                 return doc
             
-            with open ('Cadastros_alterados.txt', 'a+') as Prof:
+            with open ('professores.txt', 'a+') as Prof:
                 Prof.write("--------------------------------------------\n")
                 Prof.write("Nome do professor: {}\n" .format(self.nome))
                 Prof.write("CPF: {}\n" .format(self.cpf))
@@ -59,23 +60,35 @@ class professor:
                 Prof.write("Endereço: {}\n" .format(self.endereco))
                 Prof.write("Telefone: {}\n" .format(self.telefone))
                 Prof.write("--------------------------------------------\n")
+        
+    def cancela_cad(self):
+        loc_cpf1 = input("Buscar CPF para cancelar o cadastro: ")
+        if loc_cpf1 in self.cpf:
+            self.status = 'Cancelado'
+            print('Status do cadastro: ', self.status)
+        else:
+            print("CPF não cadastrado!")
+        
+
+    def ativa_cad(self):
+        loc_cpf2 = input("Buscar CPF para ativar o cadastro: ")
+        if loc_cpf2 in self.cpf:
+            self.status = 'Ativo'
+            print('Status do cadastro: ', self.status)
+        else:
+            print("CPF não cadastrado!")
 
      
-                
-
-
-        
-    
-
-        
-
 
 p = professor('Irineu',"045.548.658-98","05/04/1994","SP","994568475")
 
 p.Cadastrar()
 print('\n')
-print('+-------------------+')
+print("+-----------------------------------+")
 p.listas()
 print('\n')
-print('+-------------------+')
 p.editar()
+print("+-----------------------------------+")
+p.cancela_cad()
+print("+-----------------------------------+")
+p.ativa_cad()
