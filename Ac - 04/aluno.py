@@ -1,13 +1,4 @@
-class Pessoa:
-
-    def __init__(self, nome, cpf, dataNascimento):
-
-        self.nome = nome
-        self.cpf = cpf
-        self.dataNascimento = dataNascimento
-
-
-class Aluno(Pessoa):
+class Aluno:
     def __init__(self, nome, cpf, dataNascimento, endereco, telefone, cadastrado = True):
         self.nome = nome
         self.cpf = cpf
