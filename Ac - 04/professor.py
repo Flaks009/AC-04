@@ -8,16 +8,8 @@ class professor:
         self. telefone = telefone
         self.status = 'Ativo'
     
-    def Cadastrar (self):
-        
-        self.nome = input("Digite o nome do professor: ").upper()
-        self.cpf = input("Digite o CPF do professor: ")
-        self.dataNascimento = input("Digite a data de nascimento do professor: ")
-        self.endereco = input("Digite o endereço: ").upper()
-        self.telefone = input("Digite o telefone: ")
-
     
-    def listas(self):
+    def Cadastrar(self):
         self.listaProfessores = []
         self.listaProfessores.append([self.nome, self.cpf, self.dataNascimento, self.endereco, self.telefone])
         
@@ -80,12 +72,12 @@ class professor:
 
      
 
-p = professor('Irineu',"045.548.658-98","05/04/1994","SP","994568475")
+p = professor("Irineu","045.548.658-98","05/04/1994","SP","994568475")
 
 p.Cadastrar()
-print('\n')
 print("+-----------------------------------+")
-p.listas()
+print("|   Cadastro inserido com sucesso!  |")
+print("+-----------------------------------+")
 print('\n')
 p.editar()
 print("+-----------------------------------+")
